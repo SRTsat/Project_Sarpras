@@ -28,7 +28,7 @@ class PengembalianController extends Controller
             'tanggal_kembali' => 'required|date',
             'jumlah_kembali' => 'required|integer|min:1',
             'kondisi_barang' => 'required',
-            'nama_pengembalian' => 'required|string|max:100',
+            'nama_pengembali' => 'required|string|max:100',
         ]);
 
         $peminjaman = Peminjaman::findOrFail($request->peminjaman_id);

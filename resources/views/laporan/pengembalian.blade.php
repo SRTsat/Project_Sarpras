@@ -20,7 +20,7 @@
             @foreach ($pengembalians as $pengembalian)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $pengembalian->peminjaman->nama_peminjam ?? '-' }}</td>
+                <td>{{ $pengembalian->nama_pengembali ?? '-' }}</td>
                 <td>{{ $pengembalian->peminjaman->barang->nama_barang ?? '-' }}</td>
                 <td>{{ $pengembalian->tanggal_kembali }}</td>
                 <td>{{ $pengembalian->jumlah_kembali }}</td>

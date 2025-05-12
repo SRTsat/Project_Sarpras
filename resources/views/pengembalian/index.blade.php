@@ -22,7 +22,7 @@
         @forelse ($pengembalians as $p)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $p->peminjaman->nama_peminjam ?? '-' }}</td>
+                <td>{{ $p->nama_pengembali ?? '-' }}</td>
                 <td>{{ $p->peminjaman->barang->nama_barang }}</td>
                 <td>{{ $p->jumlah_kembali }}</td>
                 <td>{{ $p->tanggal_kembali }}</td>
