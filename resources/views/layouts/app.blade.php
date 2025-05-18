@@ -8,21 +8,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+        :root {
+            --primary-color: #7e57c2;
+            --secondary-color: #5e35b1;
+            --sidebar-bg: linear-gradient(135deg, #7e57c2, #5e35b1);
+        }
         body {
             min-height: 100vh;
             display: flex;
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6eaf4 100%);
         }
 
         .sidebar {
             width: 250px;
-            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            background: var(--sidebar-bg);
             color: white;
             padding: 20px 10px;
             height: 100vh;
             position: fixed;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 1000;
         }
@@ -49,6 +55,7 @@
             text-decoration: none;
             margin-bottom: 8px;
             transition: all 0.2s ease;
+            position: relative;
         }
 
         .sidebar a i {
@@ -134,12 +141,15 @@
             border-radius: 8px;
             transition: all 0.2s ease;
             font-weight: 500;
-            box-shadow: 0 2px 5px rgba(220, 53, 69, 0.3);
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .logout button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.4);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            opacity: 0.9;
         }
 
         .content {
@@ -147,8 +157,8 @@
             padding: 20px;
             flex: 1;
             width: calc(100% - 250px);
+            background-color: transparent;
         }
-
 
         @media (max-width: 768px) {
             .sidebar {
@@ -200,12 +210,7 @@
             .logout button span {
                 display: none;
             }
-
-            .sidebar-toggle {
-                display: block;
-            }
         }
-
 
         .sidebar a.active::before {
             content: '';
@@ -217,6 +222,7 @@
             border-radius: 0 4px 4px 0;
         }
     </style>
+    @yield('styles')
 </head>
 
 <body>
@@ -277,7 +283,7 @@
         {{-- Logout di bawah --}}
         <form action="{{ route('logout') }}" method="POST" class="logout">
             @csrf
-            <button class="btn btn-danger">
+            <button type="submit" class="btn">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Logout</span>
             </button>
@@ -309,7 +315,7 @@
             }
         });
     </script>
-
+    @yield('scripts')
 </body>
 
 </html>

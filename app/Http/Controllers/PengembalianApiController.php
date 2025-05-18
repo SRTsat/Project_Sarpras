@@ -17,24 +17,27 @@ class PengembalianApiController extends Controller
             'jumlah_kembali' => 'required|integer|min:1',
             'kondisi_barang' => 'required|string',
             'nama_pengembali' => 'required|string|max:100',
+            'foto_barang' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $peminjaman = Peminjaman::findOrFail($request->peminjaman_id);
         $barang = $peminjaman->barang;
 
-        // Tambahkan kembali jumlah barang
         $barang->increment('jumlah', $request->jumlah_kembali);
 
-        // Update status peminjaman
         $peminjaman->update(['status' => 'dikembalikan']);
 
-        // Simpan pengembalian
+        if ($request->hasFile('foto_barang')) {
+            $data['foto_barang'] = $request->file('foto_barang')->store('pengembalians', 'public');
+        }
+
         $pengembalian = Pengembalian::create([
             'peminjaman_id' => $request->peminjaman_id,
             'tanggal_kembali' => $request->tanggal_kembali,
             'jumlah_kembali' => $request->jumlah_kembali,
             'kondisi_barang' => $request->kondisi_barang,
             'nama_pengembali' => $request->nama_pengembali,
+            'foto_barang' => $request->foto_barang,
         ]);
 
         return response()->json([

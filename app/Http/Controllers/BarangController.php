@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 
 class BarangController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $barangs = Barang::with('kategori')->get();
+        $query = Barang::with('kategori');
+    
+        if ($request->has('search') && $request->search != '') {
+            $query->where('nama_barang', 'like', '%' . $request->search . '%');
+        }
+    
+        $barangs = $query->get();
+    
         return view('barang.index', compact('barangs'));
     }
+    
 
     public function create()
     {

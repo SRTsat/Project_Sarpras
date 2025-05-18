@@ -16,7 +16,7 @@ class PengembalianController extends Controller
 
     public function create()
     {
-       
+
         //$peminjamans = Peminjaman::where('status', 'dipinjam')->get();
         //return view('pengembalian.create', compact('peminjamans'));
     }
@@ -29,16 +29,32 @@ class PengembalianController extends Controller
             'jumlah_kembali' => 'required|integer|min:1',
             'kondisi_barang' => 'required',
             'nama_pengembali' => 'required|string|max:100',
+            'foto_barang' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $peminjaman = Peminjaman::findOrFail($request->peminjaman_id);
         $barang = $peminjaman->barang;
 
-       
+
         $barang->increment('jumlah', $request->jumlah_kembali);
+
         $peminjaman->update(['status' => 'dikembalikan']);
 
-       
+        // Siapin data
+        $data = $request->only([
+            'peminjaman_id',
+            'tanggal_kembali',
+            'jumlah_kembali',
+            'kondisi_barang',
+            'nama_pengembali'
+        ]);
+
+        // Kalau ada upload foto
+        if ($request->hasFile('foto_barang')) {
+            $data['foto_barang'] = $request->file('foto_barang')->store('pengembalians', 'public');
+        }
+
+
         Pengembalian::create([
             'peminjaman_id' => $request->peminjaman_id,
             'tanggal_kembali' => $request->tanggal_kembali,
@@ -50,4 +66,3 @@ class PengembalianController extends Controller
         return redirect()->route('pengembalians.index')->with('success', 'Pengembalian berhasil disimpan');
     }
 }
-
