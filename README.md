@@ -12,12 +12,9 @@ Sistem Informasi Sarana dan Prasarana untuk pengelolaan data peminjaman barang s
 - API dengan Laravel Sanctum
 - Flutter (on progress)
 
-## Tech Stack
+## framework
 
 - Laravel 10
-- MySQL
-- Sanctum API
-- Bootstrap
 - Flutter (client mobile)
 
 ## Cara Install
