@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -9,8 +10,15 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('user.index', compact('users'));
+        // Fetch users where the role is 'admin'
+        $admins = User::where('role', 'admin')->get();
+
+        // Fetch users where the role is 'user' (assuming 'user' is the other role)
+        // You might want to adjust this query if you have other roles or a more complex role system
+        $regularUsers = User::where('role', 'user')->get();
+
+        // Pass both collections to the view
+        return view('user.index', compact('admins', 'regularUsers'));
     }
 
     public function create()
