@@ -210,7 +210,7 @@
                     @forelse ($peminjamans as $peminjaman)
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
-                        <td><strong>{{ $peminjaman->nama_peminjam }}</strong></td>
+                        <td><strong>{{ $peminjaman-> nama_peminjam }}</strong></td>
                         <td>{{ $peminjaman->barang->nama_barang }}</td>
                         <td class="date-value">{{ $peminjaman->tanggal_pinjam }}</td>
                         <td class="text-center">

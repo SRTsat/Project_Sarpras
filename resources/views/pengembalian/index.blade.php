@@ -115,11 +115,11 @@
     
 
     .table-img-thumbnail {
-        width: 80px; 
-        height: auto;
-        border-radius: 6px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.2s ease;
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
     }
 
     .table-img-thumbnail:hover {
@@ -182,9 +182,9 @@
                         <td><strong>{{ $p->nama_pengembali ?? '-' }}</strong></td> {{-- Added strong tag --}}
                         <td>{{ $p->peminjaman->barang->nama_barang }}</td>
                         <td class="text-center">{{ $p->jumlah_kembali }}</td> {{-- Added text-center --}}
-                        <td class="text-center"> {{-- Added text-center --}}
+                        <td class="text-center">
                             @if ($p->foto_barang)
-                            <img src="{{ asset('storage/' . $p->foto_barang) }}" alt="Foto Barang" class="table-img-thumbnail"> {{-- Added class for styling --}}
+                            <img src="{{ asset('storage/' . $p->foto_barang) }}" alt="Foto Barang" style="width: 60px; border-radius: 6px;">
                             @else
                             <span>-</span>
                             @endif

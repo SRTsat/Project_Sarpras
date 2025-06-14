@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Peminjaman extends Model
 {
-    protected $fillable = ['barang_id', 'nama_peminjam', 'tanggal_pinjam', 'jumlah_pinjam', 'status'];
+    protected $fillable = ['barang_id', 'user_id', 'tanggal_pinjam', 'jumlah_pinjam', 'status', 'nama_peminjam'];
     protected $table = 'peminjamans';
 
     public function barang()
@@ -18,5 +18,10 @@ class Peminjaman extends Model
     public function pengembalian()
     {
         return $this->hasOne(Pengembalian::class, 'peminjaman_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

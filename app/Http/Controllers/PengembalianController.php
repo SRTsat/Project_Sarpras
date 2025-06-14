@@ -46,12 +46,14 @@ class PengembalianController extends Controller
             'tanggal_kembali',
             'jumlah_kembali',
             'kondisi_barang',
-            'nama_pengembali'
+            'nama_pengembali',
+            'foto_barang',
         ]);
 
-        // Kalau ada upload foto
+
+        $fotoPath = null;
         if ($request->hasFile('foto_barang')) {
-            $data['foto_barang'] = $request->file('foto_barang')->store('pengembalians', 'public');
+            $fotoPath = $request->file('foto_barang')->store('pengembalians', 'public');
         }
 
 
@@ -61,6 +63,7 @@ class PengembalianController extends Controller
             'jumlah_kembali' => $request->jumlah_kembali,
             'kondisi_barang' => $request->kondisi_barang,
             'nama_pengembali' => $request->nama_pengembali,
+            'foto_barang' => $fotoPath,
         ]);
 
         return redirect()->route('pengembalians.index')->with('success', 'Pengembalian berhasil disimpan');

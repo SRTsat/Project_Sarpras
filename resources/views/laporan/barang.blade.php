@@ -35,11 +35,10 @@
 <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h4 class="mb-0">Laporan Barang</h4>
-        {{--  Anda bisa menambahkan link export ke Excel di sini, jika diperlukan
+        Anda bisa menambahkan link export ke Excel di sini, jika diperlukan
         <a href="{{ route('laporan.barang.excel') }}" class="btn btn-light text-success">
             <i class="bi bi-file-excel me-2"></i>Export ke Excel
         </a>
-        --}}
     </div>
     <div class="card-body">
         <div class="table-responsive">

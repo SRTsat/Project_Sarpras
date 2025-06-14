@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (env('APP_ENV') !== 'production') {
+            // Aktifin hanya saat dipakai oleh Flutter / LAN
+            if (request()->is('api/*')) {
+                URL::forceRootUrl(config('app.url'));
+            }
+        }
     }
 }

@@ -27,9 +27,11 @@ class PengembalianApiController extends Controller
 
         $peminjaman->update(['status' => 'dikembalikan']);
 
+        $fotoPath = null;
         if ($request->hasFile('foto_barang')) {
-            $data['foto_barang'] = $request->file('foto_barang')->store('pengembalians', 'public');
+            $fotoPath = $request->file('foto_barang')->store('pengembalians', 'public');
         }
+
 
         $pengembalian = Pengembalian::create([
             'peminjaman_id' => $request->peminjaman_id,
@@ -37,7 +39,7 @@ class PengembalianApiController extends Controller
             'jumlah_kembali' => $request->jumlah_kembali,
             'kondisi_barang' => $request->kondisi_barang,
             'nama_pengembali' => $request->nama_pengembali,
-            'foto_barang' => $request->foto_barang,
+            'foto_barang' => $fotoPath,
         ]);
 
         return response()->json([

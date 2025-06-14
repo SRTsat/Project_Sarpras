@@ -24,7 +24,7 @@
 <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
         <h4 class="mb-0">Laporan Pengembalian</h4>
-        {{-- <a href="{{ route('laporan.pengembalian.excel') }}" class="btn btn-light text-success">Export ke Excel</a> --}}
+        <a href="{{ route('laporan.pengembalian.excel') }}" class="btn btn-light text-success">Export ke Excel</a>
     </div>
     <div class="card-body">
         <div class="table-responsive">
